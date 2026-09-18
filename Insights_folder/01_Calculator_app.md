@@ -68,4 +68,18 @@
 - APIs
 - Authentication
 
+## Further version:
+
+v2: Decimal Number
+v3: Proper expression handling
+v4: Backspace
+v5: Percentage
+v6: Negative numbers
+v7: Calculation History
+v8: Better compose UI
+v9: ViewModel
+v10: MVVM architecture
+v11: UnitTests
+v12: Persistent theory
+
 ----
