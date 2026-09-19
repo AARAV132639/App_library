@@ -1,9 +1,15 @@
 package com.example.a02_to_do_list_app
 
-//represent one task
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class TodoTask(
-    val id: Int,
-    var title:String,
-    var isDone:Boolean = false
+//This class represents databse table
+
+@Entity(tableName="tasks")
+data calss TodoTask(
+
+    @PrimaryKey(autoGenerate= true)
+    val id: Int =0,
+    val title: String,
+    val isdone: Boolean = false
 )
