@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 //This class represents databse table
 
 @Entity(tableName="tasks")
-data calss TodoTask(
+data class TodoTask(
 
     @PrimaryKey(autoGenerate= true)
     val id: Int =0,
