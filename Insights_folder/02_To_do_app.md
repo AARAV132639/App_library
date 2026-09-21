@@ -3,6 +3,9 @@
 ## Version 1: No persistence
 - Data cleared as app is closed
 
+## Version 2: Persisting Data
+- Data persists along with checkboxes even after app gets closed
+
 ## How the application works
 
 ### Adding
@@ -39,3 +42,21 @@
 1. Persisting the data: UI ---> ViewModel ---> Repository ---> Room database ---> Persistent tasks
 
 2. Notification based: Room ---> Incomplete tasks ---> WorkManager ---> Every 2 hours ---> Android Notifications
+
+## Final Project Structure
+
+ToDoApp/
+|
+|--MainActivity.kt
+|
+|-- TodoScreen.kt
+
+|
+|-- data/
+|   |--TodoTask.kt
+|   |-- TodoDao.kt
+|   |-- TodoDatabase.kt
+|   |--TodoRepository.kt
+    |-- TodoViewModel.kt
+    |--TodoViewModelFactory.kt
+
