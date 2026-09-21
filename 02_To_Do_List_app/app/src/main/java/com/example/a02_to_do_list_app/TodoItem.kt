@@ -22,7 +22,7 @@ fun TodoItem(
 
         Row(modifier = Modifier.weight(1f)){
             Checkbox(
-                checked = task.isDone,
+                checked = task.isdone,
                 onCheckedChange = {
                     onDone()
                 }
