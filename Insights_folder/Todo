@@ -1,9 +1,11 @@
-Room compiler showing error in Todo List App
 
-Update ToDoScreen
 
-Include Notifications
+Include Notifications for incomplete tasks
 
 Auto rearrage the done tasks below and incomplete tasks above
 
 Light/Night theme
+
+Add login/authentication
+
+Folder based options
