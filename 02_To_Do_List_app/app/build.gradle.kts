@@ -1,8 +1,9 @@
-import com.sun.tools.javac.resources.compiler
+
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -48,9 +49,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     //Room
-    implementation("androidx.room:room-runtime:2.8.5")
-    implementation("androidx.room:room-ktx:2.8.5)  " +
-            "ksp("androidx.room:room-compiler:2.8.5")
+    val roomVersion = "2.7.0-alpha12"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+            //Room stable release are in 2.6.x series.
 
     //WorkManager
     implementation("androidx.work:work-runtime-ktx:2.11.2")
