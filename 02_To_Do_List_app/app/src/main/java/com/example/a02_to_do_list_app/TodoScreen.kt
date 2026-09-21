@@ -9,33 +9,32 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.dp
-import java.time.temporal.TemporalAdjusters.next
+
+import kotlin.collections.emptyList
+
 
 @Composable
-fun ToDoScreen(){
+fun ToDoScreen(viewModel:TodoViewModel){
 
+    val tasks by viewModel.tasks.collectAsState(initial = emptyList());
+    
     var taskText by remember{
         mutableStateOf("")
-    }
-
-    var tasks by remember {
-        mutableStateOf(listOf<TodoTask>())
-    }
-
-    var nextId by remember {
-        mutableStateOf(1)
     }
 
     var editingTask by remember {
         mutableStateOf<TodoTask?>(null)
     }
 
-    Column(modifier= Modifier.fillMaxSize().padding(16.dp)){
-        Text (text="My To-Do List")
+     Column(modifier= Modifier.fillMaxSize().padding(16.dp)){
+
+        Text ("My To-Do List")
+
         Spacer(modifier= Modifier.height(16.dp))
 
         //Add task section
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement=Arrangement.spacedBy(8.dp)){
+
             OutlinedTextField(value=taskText, onValueChange={taskText=it},
                 modifier = Modifier.weight(1f),
                 label={
@@ -44,12 +43,9 @@ fun ToDoScreen(){
             )
 
             Button(
-                onClick= {
-                    if(taskText.isNotBlank()){
-                        tasks= tasks+TodoTask(id = nextId, title = taskText.trim())
-                        nextId++
-                        taskText=""
-                    }
+                onClick= {  
+                        viewModel.addTask(taskText)
+                        taskText = ""
                 }
             ){
                 Text("Add")
@@ -63,20 +59,11 @@ fun ToDoScreen(){
             items(items = tasks, key = {it.id}){
                 task-> TodoItem(task = task,
                     onDone = {
-                        tasks=tasks.map{
-                            if(it.id==task.id){
-                                it.copy(isDone=!it.isDone)
-                            }
-                            else{
-                                it
-                            }
-                        }
+                        viewModel.toggleTask(task)
                     },
 
                     onDelete = {
-                        tasks = tasks.filter{
-                            it.id!=task.id
-                        }
+                        viewModel.deleteTask(task)
                     },
 
                     onEdit ={
@@ -111,18 +98,11 @@ fun ToDoScreen(){
             confirmButton={
                 TextButton(
                     onClick = {
-                        if(editedText.isNotBlank()){
-                            tasks=tasks.map{
-                                if(it.id==task.id){
-                                    it.copy(title=editedText.trim())
-                                }
-                                else {
-                                    it
-                                }
-                            }
+                        
+                        viewModel.editTask(task, editedText)
 
                             editingTask=null
-                        }
+                        
                     }
                 ){
                     Text("Save")
