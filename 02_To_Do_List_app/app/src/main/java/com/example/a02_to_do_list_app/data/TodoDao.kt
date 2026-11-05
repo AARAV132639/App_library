@@ -22,7 +22,7 @@ interface TodoDao{
     @Delete
     suspend fun deleteTask(task:TodoTask)
 
-    @Query("SELECT*FROM tasks WHERE isDone =0")
+    @Query("SELECT * FROM tasks WHERE isdone = 0 ORDER BY id DESC")
     suspend fun getIncompleteTasks(): List<TodoTask>
 }
 

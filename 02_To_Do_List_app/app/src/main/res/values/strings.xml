@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">02_To_Do_List_app</string>
+    <string name="incomplete_tasks_channel_name">Incomplete tasks</string>
+    <string name="incomplete_tasks_channel_description">Reminders for tasks that are still open</string>
+    <plurals name="incomplete_tasks_notification_title">
+        <item quantity="one">1 incomplete task</item>
+        <item quantity="other">%d incomplete tasks</item>
+    </plurals>
 </resources>
